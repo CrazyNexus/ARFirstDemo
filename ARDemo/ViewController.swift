@@ -24,6 +24,8 @@ class ViewController: UIViewController {
       
       // start the AR Sessuin
       sceneView.session.run(configuration)
+      
+      setup()
    }
 
    override func didReceiveMemoryWarning() {
@@ -31,6 +33,14 @@ class ViewController: UIViewController {
       // Dispose of any resources that can be recreated.
    }
 
+   func setup() {
+      let newNode = SCNNode()
+      newNode.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.01)
+      newNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+      newNode.position = SCNVector3(0.0, 0.0, -0.3)
+      
+      sceneView.scene.rootNode.addChildNode(newNode)
+   }
 
 }
 

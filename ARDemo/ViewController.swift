@@ -24,16 +24,14 @@ class ViewController: UIViewController {
       
       // start the AR Sessuin
       sceneView.session.run(configuration)
-      
-      setup()
    }
 
    override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.
    }
-
-   func setup() {
+   
+   @IBAction func addCube(_ sender: Any) {
       let newNode = SCNNode()
       newNode.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.01)
       newNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
@@ -41,6 +39,6 @@ class ViewController: UIViewController {
       
       sceneView.scene.rootNode.addChildNode(newNode)
    }
-
+   
 }
 

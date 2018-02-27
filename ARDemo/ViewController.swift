@@ -33,15 +33,22 @@ class ViewController: UIViewController {
    
    @IBAction func addCube(_ sender: Any) {
       let newNode = SCNNode()
-      newNode.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
+      //newNode.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
+      //newNode.geometry = SCNCapsule(capRadius: 0.1, height: 0.3)
+      
+      // https://developer.apple.com/documentation/scenekit/built_in_geometry_types
+      
+      let path = UIBezierPath()
+      path.move(to: CGPoint(x: 0, y: 0))
+      path.addLine(to: CGPoint(x: 0, y: 0.2))
+      path.addLine(to: CGPoint(x: 0.2, y: 0.1))
+      let shape = SCNShape(path: path, extrusionDepth: 0.1)
+      newNode.geometry = shape
+      
       newNode.geometry?.firstMaterial?.specular.contents = UIColor.lightGray
       newNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
       
-      let x = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-      let y = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-      let z = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-      
-      newNode.position = SCNVector3(x, y, z)
+      newNode.position = SCNVector3(0, 0, -0.7)
       newNode.name = "Box"
       
       sceneView.scene.rootNode.addChildNode(newNode)
